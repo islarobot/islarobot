@@ -1,0 +1,12 @@
+var config = {};
+
+
+config.repository = 'pruebasnode';
+
+config.jsonurl = 'https://raw.githubusercontent.com/islarobot/arduino-projects/master/';
+
+config.src_ino_file = 'projects/source/src/sketch.ino';
+config.source_ino_path = 'projects/source/ino';
+
+
+module.exports = config;
