@@ -243,7 +243,7 @@ console.log('client connected');
  
 	   socket_web.on("select_project",function(data){
 
-		functions.select_project(data);
+		functions.select_project(data,projects_object);
 		
      		
     }); 

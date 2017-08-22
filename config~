@@ -1,7 +1,7 @@
 var config = {};
 
 
-config.repository = 'islarobot';
+config.repository = 'pruebasnode';
 
 config.jsonurl = 'https://raw.githubusercontent.com/islarobot/arduino-projects/master/';
 

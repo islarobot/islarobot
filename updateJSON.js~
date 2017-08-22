@@ -1,0 +1,50 @@
+//UPDATE JSON SCRIPT
+var stdin = process.stdin;
+
+
+var functions = require('./functions.js')
+
+var path = require("path");
+
+var config = require('./config')
+var request = require('request');
+
+var level = '';
+
+//1. get index.json
+
+
+indexjson = functions.request_project_file('index.json');
+index_object = JSON.parse(indexjson);
+
+
+//choose level
+   
+stdin.resume();
+stdin.setEncoding( 'utf8' );
+
+console.log('Level: (basic, intermediate, advanced)');
+stdin.on( 'data', function( key ){
+  // ctrl-c ( end of text )
+  if ( key === '\u0003' ) {
+    process.exit();
+  }
+  // write the key to stdout all normal like
+  
+	if ( key == 'basic\n' || key == 'intermediate\n' || key == 'advanced\n')
+	{
+		
+		level = key;
+		
+		process.exit();
+		
+		
+
+	}  
+	else {
+	console.log('Wrong choice: (basic, intermediate, advanced) ');
+	}
+  
+});
+
+console.log('pepe');
