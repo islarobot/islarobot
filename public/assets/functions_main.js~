@@ -64,9 +64,9 @@ function select_project(id){
 			
 //socket.emit('select_project',id);
 
-var url = 'project?id='+id;
+var url = 'project_code?id='+id;
 
-document.getElementsByName('iFrameName')[0].src = url;
+document.getElementsByName('iFrameCode')[0].src = url;
 			
 }
 

@@ -107,21 +107,26 @@ var server =http.createServer(app).listen(8070);
 io = io.listen(server);
 
 
-app.get('/project', function (req, res) {
+app.get('/project_code', function (req, res) {
 	
 	
 		var id = req.query.id;
 	
 	   active_project = id;
-		res.sendFile('project.html', { root: path.join(__dirname, 'public') });
+		res.sendFile('project_code.html', { root: path.join(__dirname, 'public') });
 
-
-	   
-	   
 })
 
 
+app.get('/project_docu', function (req, res) {
+	
+	
+		var id = req.query.id;
+	
+	   active_project = id;
+		res.sendFile('project_docu.html', { root: path.join(__dirname, 'public') });
 
+})
 
 
 io.sockets.on("connection",function(socket_web){
@@ -200,6 +205,28 @@ console.log('client connected');
 
     }); 
     
+         //petición documento de proyecto activo
+ 
+	   socket_web.on("request_active_project_documentation",function(data){
+
+		json_project_file = functions.return_code_project(active_project,projects_object)
+			
+		json_project = functions.request_project_file(json_project_file)
+		
+		object_project = JSON.parse(json_project);
+		
+		tutorial_url = object_project.tutorial
+		
+		tutorial_url  = config.jsonurl + tutorial_url;
+		
+		
+		
+		
+		io.emit('active_project_tutorial',tutorial_url);
+		
+
+    });
+    
     
      //petición de info de proyecto activo
  
@@ -234,7 +261,7 @@ console.log('client connected');
 
 		io.emit('projects',projects_json);
 
-			console.log(projects_json);
+			//console.log(projects_json);
      		
     });
     
