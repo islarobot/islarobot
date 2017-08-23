@@ -1,4 +1,4 @@
-touch /home/yago/Escritorio/islarobot
+touch ~/Escritorio/islarobot
 
 apt-get update
 

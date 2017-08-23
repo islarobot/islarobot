@@ -12,6 +12,8 @@ var request = require('sync-request');
 var config = require('./config');
 var uri = config.jsonurl + url;
 
+
+
 var res = request('GET', uri, {
   'headers': {
     'user-agent': 'example-user-agent'
@@ -22,8 +24,8 @@ var res = request('GET', uri, {
 
 if (res.statusCode == 404) {
 	
-		console.log('Pagina no encontrada')
-		return 'Pagina no encontrada'
+
+		return 'noencontrada'
 		
 	}else{
 	

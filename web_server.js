@@ -115,6 +115,7 @@ app.get('/project_code', function (req, res) {
 	   active_project = id;
 		res.sendFile('project_code.html', { root: path.join(__dirname, 'public') });
 
+
 })
 
 
@@ -187,20 +188,40 @@ console.log('client connected');
      //petición codigo de proyecto activo
  
 	   socket_web.on("request_active_project",function(data){
-
+	   	
 		json_project_file = functions.return_code_project(active_project,projects_object)
 			
 		json_project = functions.request_project_file(json_project_file)
+		
+		if (json_project == 'noencontrada') {
+		
+		oktext = 'jsonnoencontrada';		
+		text1 = ""
+		}else {
 		
 		object_project = JSON.parse(json_project);
 		
 		code_url = object_project.code
 		
+
+		
 		code_file = functions.request_project_file(code_url)
 		
+		if (code_file == 'noencontrada') {
+			
+		oktext = 'codenoencontrada';
+		text1 = ""
+		}else {
+		oktext = "ok"
+		text1 = code_file		
 		
+		}		
+		}
+
+		sendobject = {okcode:oktext, text:text1};
+		sendobject = JSON.stringify(sendobject)
 		
-		io.emit('active_project_code',code_file);
+		io.emit('active_project_code',sendobject);
 		
 
     }); 
@@ -208,19 +229,21 @@ console.log('client connected');
          //petición documento de proyecto activo
  
 	   socket_web.on("request_active_project_documentation",function(data){
-
+	   	
 		json_project_file = functions.return_code_project(active_project,projects_object)
 			
 		json_project = functions.request_project_file(json_project_file)
 		
+		if (json_project == 'noencontrada') {
+		
+		tutorial_url = {okcode:"jsonnoencontrada", text:""};
+		
+		}else {
 		object_project = JSON.parse(json_project);
 		
-		tutorial_url = object_project.tutorial
+		tutorial_url = {okcode:"ok", text:object_project.tutorial};
 		
-		tutorial_url  = config.jsonurl + tutorial_url;
-		
-		
-		
+		}
 		
 		io.emit('active_project_tutorial',tutorial_url);
 		

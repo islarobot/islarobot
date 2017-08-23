@@ -11,4 +11,4 @@ apt-get purge redis-server --assume-yes
 
 apt autoremove --assume-yes
 
-rm /home/yago/Escritorio/islarobot
+rm ~/Escritorio/islarobot
