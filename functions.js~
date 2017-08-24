@@ -58,7 +58,7 @@ return index_object
 
 }
     
-function return_code_project(id,po)
+function return_project_json_file(id,po)
 {
 var code_1
 for(var i = 0; i < po.length; i++) {
@@ -181,12 +181,27 @@ var spawn = require('child_process').spawn,
 
 }
 
-    
+function return_project_documentation(json)
+{
 
+if (json == 'noencontrada') { 
+
+io.emit('active_project_tutorial', {okcode:"jsonnoencontrada", text:""});
+
+return 0;
+
+}
+
+
+
+
+}
+    
+exports.return_project_documentation = return_project_documentation;
 exports.select_project = select_project;
 exports.request_project_file = request_project_file;
 exports.parse_json_projects = parse_json_projects;
-exports.return_code_project = return_code_project;
+exports.return_project_json_file = return_project_json_file;
 
 exports.return_project_info = return_project_info;
 

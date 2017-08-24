@@ -187,9 +187,9 @@ console.log('client connected');
     
      //petición codigo de proyecto activo
  
-	   socket_web.on("request_active_project",function(data){
+	   socket_web.on("request_active_project_code",function(data){
 	   	
-		json_project_file = functions.return_code_project(active_project,projects_object)
+		json_project_file = functions.return_project_json_file(active_project,projects_object)
 			
 		json_project = functions.request_project_file(json_project_file)
 		
@@ -229,10 +229,10 @@ console.log('client connected');
          //petición documento de proyecto activo
  
 	   socket_web.on("request_active_project_documentation",function(data){
-	   	
-		json_project_file = functions.return_code_project(active_project,projects_object)
-			
-		json_project = functions.request_project_file(json_project_file)
+		
+		json_file = return_project_json_file(active_project,projects_object)		
+		
+		answer = functions.return_documentation(json_file);		
 		
 		if (json_project == 'noencontrada') {
 		
@@ -241,7 +241,7 @@ console.log('client connected');
 		}else {
 		object_project = JSON.parse(json_project);
 		
-		tutorial_url = {okcode:"ok", text:object_project.tutorial};
+		tutorial_url = {okcode:"ok", text:object_project.tutorial_};
 		
 		}
 		
@@ -306,6 +306,16 @@ console.log('client connected');
 		
      		
     }); 
+    
+         //update index
+ 
+	   socket_web.on("update_index",function(data){
+
+		projects_object = functions.parse_json_projects()
+
+		io.emit('index_updated','');
+
+    });  
  
 });
 

@@ -1,5 +1,11 @@
 //FUNCIONES list_ports.html
 
+function update_index()
+{
+
+socket.emit('update_index','');
+
+}
 
 function select_usb_port(puerto){
 			

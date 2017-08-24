@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ 	<!DOCTYPE html>
 <html lang="en">
     <head>
         <title>Main</title>
@@ -38,7 +38,9 @@
     		</tr>
     		<tr>
 			<td colspan="2">
-			&nbsp;
+
+			<a href="javascript:update_index();">Update Index</a>
+
 			</td> 		
     		</tr>
     		<tr>
@@ -166,10 +168,10 @@ div.tab button.active {
             //recibo lista de proyectos
 				socket.on("projects",function(message){  
                
-
+					
                 message = JSON.parse(message)
                 
-          
+          		
 					print_list_of_projects(message);                
                 
             });   
@@ -220,6 +222,13 @@ div.tab button.active {
             socket.on("active_project_name",function(message){ 
             
             document.getElementById('active_project').innerHTML = message;
+				
+				});
+				
+				socket.on("index_updated",function(message){ 
+            
+            $("#project_lists").html("");
+				socket.emit('request_projects','');
 				
 				});
  
