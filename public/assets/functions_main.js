@@ -1,4 +1,35 @@
-//FUNCIONES list_ports.html
+function function_load(){
+
+//funcion de carga de página de puertos
+
+//envío solicitud de listado de puertos.
+
+
+
+openCity(event, 'docu')
+
+socket.emit('request_usb','');
+
+//solicito estado
+
+socket.emit('request_state','');
+
+//solicito proyecto activo
+
+socket.emit('request_active_project_info','');
+
+}
+
+function add_tabs(data)
+{
+
+for (i=0; i < data.length ; i++) 
+{
+name1 = data[i].url.substr(0,data[i].url.length-5);
+addbutton(name1,data[i].label);
+}
+}
+
 
 function update_index()
 {
@@ -115,3 +146,26 @@ function openInNewTab(url) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }  
+
+
+
+function addbutton(name,title) {
+	
+  //Create an input type dynamically.   
+  var element = document.createElement("button");
+  //Assign different attributes to the element. 
+	element.id = name
+	element.className = "tablinks"
+	
+  
+  element.innerText = title
+	element.onclick = function () {openCity(event, name);}
+  
+  
+
+  var buttons1 = document.getElementById("buttons");
+  //Append the element in page (in span).  
+  buttons1.appendChild(element);
+
+}
+

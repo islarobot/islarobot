@@ -10,6 +10,7 @@ var request = require('request');
 
 var active_project = 0;
 var projects_object;
+var current_project_object;
 
 console.log('c3_web running');
 
@@ -112,7 +113,7 @@ app.get('/project_code', function (req, res) {
 	
 		var id = req.query.id;
 	
-	   active_project = id;
+
 		res.sendFile('project_code.html', { root: path.join(__dirname, 'public') });
 
 
@@ -230,22 +231,15 @@ console.log('client connected');
  
 	   socket_web.on("request_active_project_documentation",function(data){
 		
-		json_file = return_project_json_file(active_project,projects_object)		
+		json_file = functions.return_project_json_file(active_project,projects_object)		
 		
-		answer = functions.return_documentation(json_file);		
+		answer = functions.return_project_documentation(json_file);		
 		
-		if (json_project == 'noencontrada') {
+
 		
-		tutorial_url = {okcode:"jsonnoencontrada", text:""};
+		answer_json = JSON.stringify(answer)	
 		
-		}else {
-		object_project = JSON.parse(json_project);
-		
-		tutorial_url = {okcode:"ok", text:object_project.tutorial_};
-		
-		}
-		
-		io.emit('active_project_tutorial',tutorial_url);
+		io.emit('active_project_tutorial', answer_json);
 		
 
     });
@@ -256,10 +250,15 @@ console.log('client connected');
 	   socket_web.on("request_active_project_info",function(data){
 
 		
-		var project_name = functions.return_project_info(active_project,projects_object)
-			
-			
-		io.emit('active_project_name',project_name);
+		project_info = functions.return_project_info(active_project,projects_object)
+		
+		current_project_object = functions.set_project_info(project_info.file)
+	
+		current_project_json = JSON.stringify(current_project_object)
+		
+		data = '{"name":"'+project_info.name+'", "info":'+current_project_json+'}'
+
+		io.emit('active_project_info',data);
 		
 
     });    

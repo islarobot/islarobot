@@ -30,9 +30,15 @@
 				//recibo proyecto activo
 				socket.on("active_project_tutorial",function(message){
 
-				var url = message;
+
+
+				json_answer = JSON.parse(message);
 				
-				window.open('iewerJS/#'+url,"_self")
+				 
+				
+				document.getElementById('content').innerHTML = json_answer.text;
+				
+				
 
 
             }); 

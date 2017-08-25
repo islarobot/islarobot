@@ -7,8 +7,6 @@ function function_load(){
 
 //envío solicitud de listado de puertos.
 
-
-
 socket.emit('request_usb','');
 
 //solicito estado

@@ -56,14 +56,13 @@
 			
 			
 			<td>
-					<div class="tab">
-  		<button class="tablinks" onclick="openCity(event, 'code')" id="defaultopen">Code</button>
-  		<button class="tablinks" onclick="openCity(event, 'docu')">Documentation</button>
-  		<button class="tablinks" onclick="openCity(event, 'basicsensors')">Basic Sensors</button>
-  		<button class="tablinks" onclick="openCity(event, 'basicactuators')">Basic Actuators</button>
-  		<button class="tablinks" onclick="openCity(event, 'advancedsensors')">Advanced Sensors</button>
-  		<button class="tablinks" onclick="openCity(event, 'advancedactuators')">Advanced Actuators</button>
-		</div>
+		<div class="tab" id="buttons">
+		<button class="tablinks" onclick="openCity(event, 'docu')">Documentation</button>
+  		<button class="tablinks" onclick="openCity(event, 'code')" >Code</button>
+  		
+  		
+  		</div>
+  		</div>
 		
 		<div id="code" class="tabcontent">
   		<h3>Code</h3>
@@ -168,7 +167,7 @@ div.tab button.active {
             //recibo lista de proyectos
 				socket.on("projects",function(message){  
                
-						
+					
                 message = JSON.parse(message)
                 
           		
@@ -219,9 +218,22 @@ div.tab button.active {
 
            	});
             
-            socket.on("active_project_name",function(message){ 
+            socket.on("active_project_info",function(message){ 
             
-            document.getElementById('active_project').innerHTML = message;
+
+            project_info = JSON.parse(message)
+            
+            project_name = project_info.name
+            
+            
+            
+            document.getElementById('active_project').innerHTML = project_name;
+            
+            project_info = project_info.info
+            
+            console.log(project_info.interaction_pages)
+
+            add_tabs(project_info.interaction_page)
 				
 				});
 				
@@ -232,7 +244,7 @@ div.tab button.active {
 				
 				});
  
-  
+
         </script>
     </body>
 </html>

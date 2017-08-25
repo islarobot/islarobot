@@ -22,7 +22,7 @@
 			
 				//solicito proyecto activo
 				
-				socket.emit('request_active_project','');
+				socket.emit('request_active_project_code','');
 				socket.emit('request_active_project_info','');
 
 				socket.on("state",function(message){  
