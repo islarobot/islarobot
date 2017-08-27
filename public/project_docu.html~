@@ -30,7 +30,7 @@
 				//recibo proyecto activo
 				socket.on("active_project_tutorial",function(message){
 
-				console.log(message)
+				alert('s')
 
 				json_answer = JSON.parse(message);
 				

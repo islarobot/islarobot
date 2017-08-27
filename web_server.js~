@@ -8,7 +8,7 @@ var path = require("path");
 var config = require('./config')
 var request = require('request');
 
-var active_project = 0;
+var active_project = 1;
 var projects_object;
 var current_project_object;
 
@@ -127,6 +127,16 @@ app.get('/project_docu', function (req, res) {
 	
 	   active_project = id;
 		res.sendFile('project_docu.html', { root: path.join(__dirname, 'public') });
+
+})
+
+app.get('/project_add_docu', function (req, res) {
+	
+	
+		var id = req.query.id;
+	
+	   active_project = id;
+		res.sendFile('project_adddocu.html', { root: path.join(__dirname, 'public') });
 
 })
 
@@ -256,7 +266,7 @@ console.log('client connected');
 	
 		current_project_json = JSON.stringify(current_project_object)
 		
-		data = '{"name":'+project_info.name+', "info":'+current_project_json+'}'
+		data = '{"name":"'+project_info.name+'", "info":'+current_project_json+'}'
 
 		io.emit('active_project_info',data);
 		

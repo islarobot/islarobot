@@ -37,7 +37,7 @@ var node = document.getElementById('buttons');
 node.innerHTML = "";
 addbutton(docu,"Documentation");
 addbutton(code,"Code");
-addbutton(addcode,"Additional Documentation");
+addbutton(addDocu,"Additional Documentation");
 
 }
 
@@ -114,10 +114,13 @@ function select_project(id){
 
 var code = 'project_code?id='+id;
 var docu = 'project_docu?id='+id;
+var adddocu = 'project_add_docu?id='+id;
 
 document.getElementsByName('iFrameCode')[0].src = code;
 
 document.getElementsByName('iFrameDocu')[0].src = docu;
+
+document.getElementsByName('iFrameaddDocu')[0].src = adddocu;
 			
 }
 

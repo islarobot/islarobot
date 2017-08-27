@@ -8,7 +8,7 @@ var path = require("path");
 var config = require('./config')
 var request = require('request');
 
-var active_project = 0;
+var active_project = 1;
 var projects_object;
 var current_project_object;
 
@@ -130,6 +130,16 @@ app.get('/project_docu', function (req, res) {
 
 })
 
+app.get('/project_add_docu', function (req, res) {
+	
+	
+		var id = req.query.id;
+	
+	   active_project = id;
+		res.sendFile('project_adddocu.html', { root: path.join(__dirname, 'public') });
+
+})
+
 
 io.sockets.on("connection",function(socket_web){
 
@@ -238,7 +248,7 @@ console.log('client connected');
 
 		
 		answer_json = JSON.stringify(answer)	
-		
+		console.log(answer_json)
 		io.emit('active_project_tutorial', answer_json);
 		
 

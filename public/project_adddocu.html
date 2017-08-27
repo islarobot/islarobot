@@ -22,15 +22,15 @@
 			
 				//solicito proyecto activo
 				
-				socket.emit('request_active_project_documentation','');
-				socket.emit('request_active_project_info','');
+				socket.emit('request_active_project_additional_documentation','');
+
 
   
   
 				//recibo proyecto activo
-				socket.on("active_project_tutorial",function(message){
+				socket.on("active_project_additional_tutorial",function(message){
 
-				alert('s')
+
 
 				json_answer = JSON.parse(message);
 				
