@@ -30,6 +30,17 @@ addbutton(name1,data[i].label);
 }
 }
 
+function reset_buttons()
+{
+
+var node = document.getElementById('buttons');
+node.innerHTML = "";
+addbutton(docu,"Documentation");
+addbutton(code,"Code");
+addbutton(addcode,"Additional Documentation");
+
+}
+
 
 function update_index()
 {

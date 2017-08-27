@@ -57,8 +57,8 @@
 			
 			<td>
 		<div class="tab" id="buttons">
-		<button class="tablinks" onclick="openCity(event, 'docu')">Documentation</button>
-  		<button class="tablinks" onclick="openCity(event, 'code')" >Code</button>
+		
+		
   		
   		
   		</div>
@@ -220,7 +220,7 @@ div.tab button.active {
             
             socket.on("active_project_info",function(message){ 
             
-
+				reset_buttons()
             project_info = JSON.parse(message)
             
             project_name = project_info.name
@@ -231,7 +231,7 @@ div.tab button.active {
             
             project_info = project_info.info
             
-            console.log(project_info.interaction_pages)
+            //console.log(project_info.interaction_pages)
 
             add_tabs(project_info.interaction_pages)
 				

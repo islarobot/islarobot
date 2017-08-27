@@ -25,9 +25,19 @@ function add_tabs(data)
 
 for (i=0; i < data.length ; i++) 
 {
-name1 = data.url.substr(0,data.url.length-5);
-addbutton(name1,data.label);
+name1 = data[i].url.substr(0,data[i].url.length-5);
+addbutton(name1,data[i].label);
 }
+}
+
+function reset_buttons()
+{
+
+var node = document.getElementById('buttons');
+node.innerHTML = "";
+addbutton(docu,"Documentation");
+addbutton(code,"Code");
+
 }
 
 
