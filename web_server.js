@@ -245,19 +245,37 @@ console.log('client connected');
 		
 		answer = functions.return_project_documentation(json_file);		
 		
-
-		
 		answer_json = JSON.stringify(answer)	
-		
-		
-		
-		
+				
 		io.emit('active_project_tutorial', answer_json);
 		
 		
 		
 
     });
+    
+		socket_web.on("request_active_project_additional_documentation",function(data){
+		
+		json_file = functions.return_project_json_file(active_project,projects_object)		
+		
+		answer = functions.request_project_file(json_file)
+		
+		answer_object = JSON.parse(answer)
+		
+		pdf_file = answer_object.tutorial_pdf
+		
+		pdf_file_binary = config.jsonurl + pdf_file
+		
+		binary = functions.request_project_file(pdf_file_binary)
+				
+				
+	
+		io.emit('active_project_additional_tutorial', config.jsonurl+pdf_file);
+		
+		
+		
+
+    });    
     
     
      //petición de info de proyecto activo

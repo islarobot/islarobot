@@ -2,7 +2,7 @@
 
 
 //funciones 
- 
+ var config = require('./config');
 
  
  
@@ -192,7 +192,7 @@ if (json == 'noencontrada') {
 
 //io.emit('active_project_tutorial', {okcode:"jsonnoencontrada", text:""});
 
-return {okcode:"jsonnoencontrada", text:""};
+return {"okcode":"jsonnoencontrada", "text":""};
 
 }
 
@@ -200,11 +200,11 @@ json_project_file = request_project_file(json);
 
 if (json_project_file == 'noencontrada') { 
 
-return {okcode:"codenoencontrada", text:""};
+return {"okcode":"codenoencontrada", "text":""};
 
 }
 
-console.log(json_project_file)
+
 
 object_project_file = JSON.parse(json_project_file);
 
@@ -214,7 +214,7 @@ html_tutorial = return_html_tutorial(object_project_file);
 
 
 
-return {okcode:"html", text:html_tutorial};
+return {"okcode":"html", "text":html_tutorial};
 
 }
 
@@ -226,7 +226,7 @@ return {okcode:"pdf", text:pdf_tutorial};
 
 }
 
-return {okcode:"error", text:""};
+return {"okcode":"error", "text":""};
 
 }
 
@@ -247,7 +247,7 @@ html +='<p><strong>Introduction</strong></p><p>'+object.tutorial_html.introducti
 
 html += '<p>'+object.tutorial_html.comments_components+'</p><p>&nbsp;</p>'
 
-html += '<p><strong>Layout</strong></p><p>'+object.tutorial_html.layout_text_prev+'</p><p><img src="'+object.tutorial_html.image_layout+'" style="width:304px;height:228px;"></p><p>'+object.tutorial_html.layout_text_post+'</p><p>&nbsp;</p>'
+html += '<p><strong>Layout</strong></p><p>'+object.tutorial_html.layout_text_prev+'</p><p><img src="'+config.jsonurl+object.tutorial_html.image_layout+'" style="width:304px;height:228px;"></p><p>'+object.tutorial_html.layout_text_post+'</p><p>&nbsp;</p>'
 
 html += '<p><strong>Code</strong></p><p>'+object.tutorial_html.code_text_prev+'</p><p>'+object.tutorial_html.code_text_post+'</p><p>&nbsp;</p>'
 
@@ -259,6 +259,8 @@ html +='</body>'
 
 html +='</html>'
 
+
+//html = JSON.stringify(html)
 
 
 
