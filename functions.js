@@ -204,6 +204,7 @@ return {okcode:"codenoencontrada", text:""};
 
 }
 
+console.log(json_project_file)
 
 object_project_file = JSON.parse(json_project_file);
 
@@ -246,7 +247,7 @@ html +='<p><strong>Introduction</strong></p><p>'+object.tutorial_html.introducti
 
 html += '<p>'+object.tutorial_html.comments_components+'</p><p>&nbsp;</p>'
 
-html += '<p><strong>Layout</strong></p><p>'+object.tutorial_html.layout_text_prev+'</p><p><img src="'+object.tutorial_html.layout_img+'" style="width:304px;height:228px;"></p><p>'+object.tutorial_html.layout_text_post+'</p><p>&nbsp;</p>'
+html += '<p><strong>Layout</strong></p><p>'+object.tutorial_html.layout_text_prev+'</p><p><img src="'+object.tutorial_html.image_layout+'" style="width:304px;height:228px;"></p><p>'+object.tutorial_html.layout_text_post+'</p><p>&nbsp;</p>'
 
 html += '<p><strong>Code</strong></p><p>'+object.tutorial_html.code_text_prev+'</p><p>'+object.tutorial_html.code_text_post+'</p><p>&nbsp;</p>'
 

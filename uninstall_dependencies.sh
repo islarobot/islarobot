@@ -9,6 +9,8 @@ apt-get purge npm --assume-yes
 
 apt-get purge redis-server --assume-yes
 
+apt-get purge libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential --assume-yes
+
 apt autoremove --assume-yes
 
 rm ~/Escritorio/islarobot

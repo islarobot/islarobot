@@ -8,7 +8,7 @@ var path = require("path");
 var config = require('./config')
 var request = require('request');
 
-var active_project = 1;
+var active_project = 0;
 var projects_object;
 var current_project_object;
 
@@ -130,7 +130,7 @@ app.get('/project_docu', function (req, res) {
 
 })
 
-app.get('/project_add_docu', function (req, res) {
+app.get('/project_adddocu', function (req, res) {
 	
 	
 		var id = req.query.id;
@@ -248,8 +248,13 @@ console.log('client connected');
 
 		
 		answer_json = JSON.stringify(answer)	
-		console.log(answer_json)
+		
+		
+		
+		
 		io.emit('active_project_tutorial', answer_json);
+		
+		
 		
 
     });
@@ -265,6 +270,8 @@ console.log('client connected');
 		current_project_object = functions.set_project_info(project_info.file)
 	
 		current_project_json = JSON.stringify(current_project_object)
+		
+		
 		
 		data = '{"name":"'+project_info.name+'", "info":'+current_project_json+'}'
 

@@ -4,9 +4,10 @@ function function_load(){
 
 //envío solicitud de listado de puertos.
 
+select_project(1)
 
 
-openCity(event, 'docu')
+
 
 socket.emit('request_usb','');
 
@@ -35,9 +36,11 @@ function reset_buttons()
 
 var node = document.getElementById('buttons');
 node.innerHTML = "";
-addbutton(docu,"Documentation");
-addbutton(code,"Code");
-addbutton(addDocu,"Additional Documentation");
+addbutton('docu',"Documentation");
+addbutton('code',"Code");
+addbutton('addDocu',"Additional Documentation");
+
+openCity('docu_button', 'docu')
 
 }
 
@@ -114,7 +117,7 @@ function select_project(id){
 
 var code = 'project_code?id='+id;
 var docu = 'project_docu?id='+id;
-var adddocu = 'project_add_docu?id='+id;
+var adddocu = 'project_adddocu?id='+id;
 
 document.getElementsByName('iFrameCode')[0].src = code;
 
@@ -140,7 +143,9 @@ function openInNewTab(url) {
 
 
 
-	function openCity(evt, cityName) {
+function openCity(button_id, cityName) {
+	
+
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -158,7 +163,7 @@ function openInNewTab(url) {
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+    document.getElementById(button_id).className += " active";
 }  
 
 
@@ -168,12 +173,13 @@ function addbutton(name,title) {
   //Create an input type dynamically.   
   var element = document.createElement("button");
   //Assign different attributes to the element. 
-	element.id = name
+
+	element.id = name+'_button'
 	element.className = "tablinks"
 	
   
   element.innerText = title
-	element.onclick = function () {openCity(event, name);}
+	element.onclick = function () {openCity(element.id, name);}
   
   
 
