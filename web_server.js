@@ -7,6 +7,7 @@ var path = require("path");
 
 var config = require('./config')
 var request = require('request');
+var pdfDocument = require('pdfkit');
 
 var active_project = 0;
 var projects_object;
@@ -141,6 +142,92 @@ app.get('/project_adddocu', function (req, res) {
 })
 
 
+app.get('/pdf1', function (req, res) {
+	
+	var options = {
+    method: 'GET',
+    host: 'https://github.com',
+    port: 443,
+    path: '/islarobot/arduino-projects/raw/master/introduction.pdf'
+  };
+
+var request = http.request(options, function(response) { 
+  var data = []; 
+
+  response.on('data', function(chunk) { 
+    data.push(chunk); 
+  }); 
+
+  response.on('end', function() { 
+    data = Buffer.concat(data); 
+    
+res.writeHead(200, {
+  'Content-Type': 'application/pdf',
+  'Content-Disposition': 'attachment; filename=some_file.pdf',
+  'Content-Length': data.length
+});
+res.end(pdfData);    
+    
+  }); 
+}); 
+
+request.end();
+
+
+	
+	
+	
+});
+
+
+app.get('/pdf', function (req, res) {
+	
+https = require('https')
+  //var donneRecu = req.body;
+
+  //console.log(donneRecu['lien']);
+
+  //var url = donneRecu['lien']; //pdf link
+  
+  var url = 'https://github.com/islarobot/arduino-projects/raw/master/introduction.pdf'
+
+  https.get(url, function(response) {
+
+      var chunks = [];
+
+      response.on('data', function(chunk) {
+
+          console.log('downloading');
+
+          chunks.push(chunk);
+
+      });
+
+      response.on("end", function() {
+
+          console.log('downloaded');
+
+          var jsfile = new Buffer.concat(chunks).toString('base64');
+          	
+			res.writeHead(200, {
+  'Content-Type': 'application/pdf',
+  'Content-Disposition': 'attachment; filename=some_file.pdf',
+  'Content-Length': jsfile.length
+});
+res.end(jsfile);   
+				
+          
+      });
+
+  }).on("error", function() {
+
+      callback(null);
+
+  });
+
+});
+
+
 io.sockets.on("connection",function(socket_web){
 
 console.log('client connected');
@@ -260,17 +347,21 @@ console.log('client connected');
 		
 		answer = functions.request_project_file(json_file)
 		
-		answer_object = JSON.parse(answer)
+		//answer_object = JSON.parse(answer)
 		
-		pdf_file = answer_object.tutorial_pdf
+		//pdf_file = answer_object.tutorial_pdf
 		
-		pdf_file_binary = config.jsonurl + pdf_file
+		//pdf_file_binary = config.jsonurl + pdf_file
 		
-		binary = functions.request_project_file(pdf_file_binary)
+		//binary = functions.request_project_pdf(pdf_file_binary)
+		
+		//console.log(binary)
+		//console.log(binary64)
+		//var binary64 = binary.toString('base64');
 				
 				
 	
-		io.emit('active_project_additional_tutorial', config.jsonurl+pdf_file);
+		io.emit('active_project_additional_tutorial', '1');
 		
 		
 		

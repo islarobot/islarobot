@@ -5,6 +5,30 @@
  var config = require('./config');
 
  
+ function request_project_pdf(url){
+
+var request = require('sync-request');
+var config = require('./config');
+var uri = config.jsonurl + url;
+ 
+var res = request('GET', uri, {
+  'headers': {
+    'user-agent': 'example-user-agent',
+    'Content-type' : 'applcation/pdf'
+  }
+});
+ 
+if (res.statusCode == 404) {
+	
+		return 'noencontrada'
+		
+	}else{
+
+return res.getBody('utf8')
+
+}
+
+}
  
 function request_project_file(url){
 
@@ -296,6 +320,7 @@ exports.set_project_info = set_project_info;
 exports.return_project_documentation = return_project_documentation;
 exports.select_project = select_project;
 exports.request_project_file = request_project_file;
+exports.request_project_pdf = request_project_pdf;
 exports.parse_json_projects = parse_json_projects;
 exports.return_project_json_file = return_project_json_file;
 
