@@ -66,7 +66,7 @@ var msg_object = JSON.parse(msg);
 
 //envio a web todo lo que recibo
 
-//console.log(msg_object);
+
 
 io.emit(functions.decode_to_web_client(msg_object.type_code),JSON.stringify(msg_object.value_text));
 
@@ -363,6 +363,19 @@ console.log('client connected');
 		
 
     });    
+    
+		socket_web.on("request_active_project_params",function(data){
+	   
+		params = current_project_object.parameters
+		
+		params = JSON.stringify(params)
+		
+		io.emit('active_project_params',params);
+		
+		
+
+    });    
+    
     
     //selección de dispositivo usb
     

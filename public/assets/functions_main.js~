@@ -6,7 +6,7 @@ function function_load(){
 
 
 
-
+select_project(1)
 
 
 socket.emit('request_usb','');
@@ -26,8 +26,12 @@ function add_tabs(data)
 
 for (i=0; i < data.length ; i++) 
 {
+
 name1 = data[i].url.substr(0,data[i].url.length-5);
 addbutton(name1,data[i].label);
+id = 'Iframe'+name1
+
+document.getElementById(id).src = data[i].url
 }
 }
 
@@ -186,6 +190,24 @@ function addbutton(name,title) {
   var buttons1 = document.getElementById("buttons");
   //Append the element in page (in span).  
   buttons1.appendChild(element);
+
+}
+
+function set_params(par,vl)
+{
+
+for (i = 0; i < par.length; i++) {
+
+document.getElementById('min'+i).value = par[i].minval;
+document.getElementById('max'+i).value = par[i].maxval;
+document.getElementById('param'+i).value = par[i].code;
+	
+vl[i].param = par[i].code
+
+}
+
+
+
 
 }
 

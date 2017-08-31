@@ -539,7 +539,7 @@ var message_local = new classes.message_object('c4_main','c3_web','100',msg_tupl
 
 var message_json = JSON.stringify(message_local);
 
-//console.log(message_json)
+console.log(message_json)
 //envio información
 conn.send(message_json, function(resp, data) {});	
 

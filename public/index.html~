@@ -11,9 +11,9 @@
     </head>
     <body onload="function_load()">
     
-    		<table border="1">
+    		<table border="1" width="100%" height="100%">
     		<tr>
-    		<td>
+    		<td width="20%">
     		<table border="1">
     		
     		<tr>
@@ -55,49 +55,40 @@
 			</td>
 			
 			
-			<td>
+			<td valign="top">
 		<div class="tab" id="buttons">
 		
 		
   		
   		
   		</div>
-  		</div>
+  		
 		
 		<div id="code" class="tabcontent">
   		<h3>Code</h3>
-  		<iframe name="iFrameCode" width="1200" height="900"></iframe>
+  		<iframe name="iFrameCode" style="height: 100%; border: none" width="100%" height="900"></iframe>
 		</div>	
 		
 		<div id="docu" class="tabcontent">
   		<h3>Documentation</h3>
-  		<iframe name="iFrameDocu" width="1200" height="900"></iframe>
+  		<iframe name="iFrameDocu" style="height: 100%; border: none" width="100%" height="900"></iframe>
 		</div>	
 		
 		<div id="addDocu" class="tabcontent">
   		<h3>Additional Documentation</h3>
-  		<iframe name="iFrameaddDocu" width="1200" height="900"></iframe>
+  		<iframe name="iFrameaddDocu" style="height: 100%; border: none" width="100%" height="900"></iframe>
 		</div>	
 		
 		<div id="basicsensors" class="tabcontent">
   		<h3>Basic Sensors</h3>
-  		<iframe src="basicsensors.html" height="550" width="100%"></iframe>
+  		<iframe src="basicsensors.html" style="height: 100%; border: none" width="100%"></iframe>
 		</div>
 
 		<div id="basicactuators" class="tabcontent">
   		<h3>Paris</h3>
-  		<iframe src="basicactuators.html" height="550" width="100%"></iframe>
+  		<iframe src="basicactuators.html" style="height: 100%; border: none" width="100%"></iframe>
 		</div>
 
-		<div id="advancedsensors" class="tabcontent">
-  		<h3>Tokyo</h3>
-  		<p>Tokyo is the capital of Japan.</p>
-		</div>
-		
-		<div id="advancedactuators" class="tabcontent">
-  		<h3>Tokyo</h3>
-  		<p>Tokyo is the capital of Japan.</p>
-		</div>		
 		
 		
 			
@@ -107,6 +98,10 @@
        
        </body>
            <style>
+           
+           body {
+    height: 90vh;
+}
     
 	/* Style the tab */
 div.tab {
@@ -142,6 +137,8 @@ div.tab button.active {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+    height: 90%
+    
 }    
     </style>
 
@@ -233,7 +230,7 @@ div.tab button.active {
             
             project_name = project_info.name
             
-            if (project_name == 'Introduction') {  select_project(1) } 
+            
             
             document.getElementById('active_project').innerHTML = project_name;
             
