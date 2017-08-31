@@ -55,7 +55,7 @@ var port_name = msg_object.value_text;
 var myPort = new SerialPort(port_name, {
    baudRate: 9600,
    // look for return and newline at the end of each data packet:
-   parser: SerialPort.parsers.readline("\n")
+   //parser: SerialPort.parsers.readline("\n")
  });
  
 

@@ -107,13 +107,9 @@ function return_project_info(id,po)
 var url_1 = 'None'
 var url_2 = 'None'
 for(var i = 0; i < po.length; i++) {
-	console.log(i)	
+	
 for(var j = 0; j < po[i].projects.length; j++) {
-	console.log(j)
-		
-	console.log(id)
-	console.log(po[i].projects[j].id)
-	console.log(po[i].projects[j].name)
+
 if(po[i].projects[j].id == id){
 
 url_1 = po[i].projects[j].name
@@ -186,6 +182,7 @@ var spawn = require('child_process').spawn,
 
 ino.on('exit', function (code) {
   upload_ino()
+  console.log('update')
 });
 
 

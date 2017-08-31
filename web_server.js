@@ -417,6 +417,7 @@ console.log('client connected');
 
 		functions.update_arduino(data);
 		
+
      		
     }); 
     

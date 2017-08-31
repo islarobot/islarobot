@@ -182,6 +182,7 @@ var spawn = require('child_process').spawn,
 
 ino.on('exit', function (code) {
   upload_ino()
+  console.log('update')
 });
 
 
@@ -210,6 +211,7 @@ function upload_ino()
 
 var spawn = require('child_process').spawn,
     ino    = spawn('ino', ['upload'],{cwd: 'projects/source/'});
+    console.log('upload')
 
 }
 
