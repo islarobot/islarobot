@@ -74,6 +74,11 @@
   		<iframe name="iFrameDocu" width="1200" height="900"></iframe>
 		</div>	
 		
+		<div id="addDocu" class="tabcontent">
+  		<h3>Additional Documentation</h3>
+  		<iframe name="iFrameaddDocu" width="1200" height="900"></iframe>
+		</div>	
+		
 		<div id="basicsensors" class="tabcontent">
   		<h3>Basic Sensors</h3>
   		<iframe src="basicsensors.html" height="550" width="100%"></iframe>
@@ -219,13 +224,16 @@ div.tab button.active {
            	});
             
             socket.on("active_project_info",function(message){ 
-            
+				
+
+												
+				
 				reset_buttons()
             project_info = JSON.parse(message)
             
             project_name = project_info.name
             
-            
+            if (project_name == 'Introduction') {  select_project(1) } 
             
             document.getElementById('active_project').innerHTML = project_name;
             

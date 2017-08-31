@@ -4,9 +4,9 @@ function function_load(){
 
 //envío solicitud de listado de puertos.
 
+
+
 select_project(1)
-
-
 
 
 socket.emit('request_usb','');

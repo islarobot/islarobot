@@ -107,8 +107,15 @@ function return_project_info(id,po)
 var url_1 = 'None'
 var url_2 = 'None'
 for(var i = 0; i < po.length; i++) {
+	console.log(i)	
 for(var j = 0; j < po[i].projects.length; j++) {
+	console.log(j)
+		
+	console.log(id)
+	console.log(po[i].projects[j].id)
+	console.log(po[i].projects[j].name)
 if(po[i].projects[j].id == id){
+
 url_1 = po[i].projects[j].name
 url_2 = po[i].projects[j].file
 
@@ -120,10 +127,11 @@ url_2 = po[i].projects[j].file
 //return JSON.stringify(value1)
 
 }
-return {"name":url_1,"file":url_2}
+
 
 }
 }
+return {"name":url_1,"file":url_2}
 }  
     
     
@@ -320,6 +328,7 @@ exports.set_project_info = set_project_info;
 exports.return_project_documentation = return_project_documentation;
 exports.select_project = select_project;
 exports.request_project_file = request_project_file;
+exports.request_project_pdf = request_project_pdf;
 exports.parse_json_projects = parse_json_projects;
 exports.return_project_json_file = return_project_json_file;
 

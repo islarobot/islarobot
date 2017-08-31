@@ -1,9 +1,9 @@
 var config = {};
 
 
-config.repository = 'pruebasnode';
+config.repository = 'islarobot';
 
-config.jsonurl = 'https://raw.githubusercontent.com/islarobot/arduino-projects/master/';
+config.jsonurl = 'https://raw.githubusercontent.com1/islarobot/arduino-projects/master/';
 
 config.src_ino_file = 'projects/source/src/sketch.ino';
 config.source_ino_path = 'projects/source/ino';

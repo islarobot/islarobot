@@ -4,7 +4,6 @@ var io_client = require('socket.io-client');
 var serverUrl = 'http://localhost:8080';
 var conn = io_client.connect(serverUrl);
 var path = require("path");
-var urlencode = require('urlencode');
 
 var config = require('./config')
 var request = require('request');
@@ -124,11 +123,8 @@ app.get('/project_code', function (req, res) {
 
 app.get('/project_docu', function (req, res) {
 	
-
 	
 		var id = req.query.id;
-				
-		
 	
 	   active_project = id;
 		res.sendFile('project_docu.html', { root: path.join(__dirname, 'public') });
@@ -140,7 +136,7 @@ app.get('/project_adddocu', function (req, res) {
 	
 		var id = req.query.id;
 	
-	   
+	   active_project = id;
 		res.sendFile('project_adddocu.html', { root: path.join(__dirname, 'public') });
 
 })
@@ -148,24 +144,26 @@ app.get('/project_adddocu', function (req, res) {
 
 
 app.get('/pdf', function (req, res) {
-
-
-url = current_project_object.tutorial_pdf	
-
-
-https = require('https')
-
-  //var url = 'https://raw.githubusercontent.com/islarobot/arduino-projects/master/introduction.pdf'
-
-var url = config.jsonurl+url
 	
+https = require('https')
+  //var donneRecu = req.body;
+
+  //console.log(donneRecu['lien']);
+
+  //var url = donneRecu['lien']; //pdf link
+  //var fs = require('fs');
+  var url = 'https://raw.githubusercontent.com/islarobot/arduino-projects/master/introduction.pdf'
+//var file = fs.createWriteStream("4.pdf");
+
+	//var request = https.get(url, function(response) {response.pipe(file);});
+
   https.get(url, function(response) {
 
       var chunks = [];
 
       response.on('data', function(chunk) {
 
-
+          console.log('downloading');
 
           chunks.push(chunk);
 
@@ -173,14 +171,14 @@ var url = config.jsonurl+url
 
       response.on("end", function() {
 
+          console.log('downloaded');
 
-
-          //var jsfile = new Buffer.concat(chunks).toString('base64');
+          var jsfile = new Buffer.concat(chunks).toString('base64');
           var jsfile = new Buffer.concat(chunks);
           	
 			res.writeHead(200, {
   'Content-Type': 'application/pdf',
-  'Content-Disposition': 'inline; filename=1.pdf',
+  'Content-Disposition': 'attachment; filename=1.pdf',
   'Content-Length': jsfile.length
 });
 res.end(jsfile);   
@@ -190,7 +188,7 @@ res.end(jsfile);
 
   }).on("error", function() {
 
-      console.log('error')
+      callback(null);
 
   });
 
@@ -296,18 +294,16 @@ console.log('client connected');
          //petición documento de proyecto activo
  
 	   socket_web.on("request_active_project_documentation",function(data){
-	   	
-			   	
-	   	
-		
 		
 		json_file = functions.return_project_json_file(active_project,projects_object)		
 		
 		answer = functions.return_project_documentation(json_file);		
 		
-		answer_json = JSON.stringify(answer)
-		
+		answer_json = JSON.stringify(answer)	
+				
 		io.emit('active_project_tutorial', answer_json);
+		
+		
 		
 
     });
@@ -315,16 +311,13 @@ console.log('client connected');
 		socket_web.on("request_active_project_additional_documentation",function(data){
 		
 		json_file = functions.return_project_json_file(active_project,projects_object)		
-
+		
 		answer = functions.request_project_file(json_file)
 		
-		answer_object = JSON.parse(answer)
+		//answer_object = JSON.parse(answer)
 		
-		pdf_file = answer_object.tutorial_pdf
+		//pdf_file = answer_object.tutorial_pdf
 		
-
-		
-		pdf_file = urlencode(pdf_file)
 		//pdf_file_binary = config.jsonurl + pdf_file
 		
 		//binary = functions.request_project_pdf(pdf_file_binary)
@@ -347,8 +340,6 @@ console.log('client connected');
  
 	   socket_web.on("request_active_project_info",function(data){
 
-
-		if (active_project == 0) { active_project = 1;}
 		
 		project_info = functions.return_project_info(active_project,projects_object)
 		
@@ -356,8 +347,9 @@ console.log('client connected');
 	
 		current_project_json = JSON.stringify(current_project_object)
 		
-		data = '{"name":"'+project_info.name+'", "info":'+current_project_json+'}'
 		
+		
+		data = '{"name":"'+project_info.name+'", "info":'+current_project_json+'}'
 
 		io.emit('active_project_info',data);
 		

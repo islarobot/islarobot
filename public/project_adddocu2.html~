@@ -11,7 +11,16 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script> 
     </head>
     
-    
+    <style>
+    html{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+	body {
+    margin: 0;
+	}	    
+    </style>
     <script type="text/javascript">
     
 	
@@ -32,6 +41,13 @@
 
 				//recibo proyecto activo
 				socket.on("active_project_additional_tutorial",function(message){
+				
+				
+				
+
+				top.document.getElementById('main').setAttribute("src",'/pdf');
+				
+				
 				});
 				
 				
@@ -41,17 +57,9 @@
     
     <body>
 
-	<div width="100%" height="100%">
-    <object id="obj" type="application/pdf" width="100%" height="800">
-     
-    </object>
-	</div>
+		<iframe id="main" style="border: 0; width: 100%; height: 100%">Your browser doesn't support iFrames.</iframe>
 
     </body>
-    <iframe src = "/ViewerJS/#1.pdf" width='400' height='300' allowfullscreen webkitallowfullscreen></iframe>
-    <script type="text/javascript">
-    	var element = document.getElementById('obj')
-		
-		element.data = "/pdf";
-    </script>
+   
+
 </html>

@@ -4,10 +4,10 @@ function function_load(){
 
 //envío solicitud de listado de puertos.
 
-select_project(1)
 
 
-openCity('docu_button', 'docu')
+
+
 
 socket.emit('request_usb','');
 
@@ -39,6 +39,8 @@ node.innerHTML = "";
 addbutton('docu',"Documentation");
 addbutton('code',"Code");
 addbutton('addDocu',"Additional Documentation");
+
+openCity('docu_button', 'docu')
 
 }
 
