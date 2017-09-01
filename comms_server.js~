@@ -6,8 +6,8 @@
 //app.use(errorhandler()); // development only
 //var server = http.createServer(app);
 var delayed = require('delayed');
-//var redis = require("redis");
-//var client = redis.createClient({host : 'localhost', port : 6379});
+var redis = require("redis");
+var client = redis.createClient({host : 'localhost', port : 6379});
 var io = require('socket.io')
 ioServer = io.listen(8080);
 console.log('c2_comms running');
@@ -45,7 +45,7 @@ socket.on('id', function (data, fn) {
 
 socket.on('message', function (data, fn) {
     
-	//console.log(data);
+	console.log(data);
 	
  	var data_object = JSON.parse(data);
  	

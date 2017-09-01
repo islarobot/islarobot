@@ -248,6 +248,7 @@ console.log('client connected');
 			var message_local = new classes.message_object('c3_web','c1_main','21','');
  			var message_json = JSON.stringify(message_local);
 			conn.send(message_json);
+			console.log(message_json)
 		
      		
     }); 

@@ -4,44 +4,14 @@ var serverUrl = 'http://localhost:8080';
 var conn = io.connect(serverUrl);
 console.log('c4_ardu running');
 
-//envio id
-conn.emit('id', 'c4_ardu', function(resp, data) {
-    //console.log(message_object);
-});
-
-var port_arg = process.argv[2];
 
 
 var SerialPort = require('serialport');// include the library
 
-
-var myPort = new SerialPort(port_arg, {
-   baudRate: 9600,
-   // look for return and newline at the end of each data packet:
-   //parser: SerialPort.parsers.readline("\n")
- });
- 
-
-
-myPort.on('open', onPortOpen);
-
-myPort.on('close', onClose);
-myPort.on('data', onData);
-
-function onClose(){
-    console.log("Port is closed, yo");
-}
-
-function onPortOpen(){
-    console.log("YESSIR THE PORT IS OPEN COS CAPS");
-}
-
-
-function onData(d)
-{
-    console.log("data dis, data dat "+d)
-}
-
+//envio id
+conn.emit('id', 'c4_ardu', function(resp, data) {
+    //console.log(message_object);
+});
 
 
   
@@ -117,6 +87,45 @@ conn.send(message_json, function(resp, data) {});
      
      
 });
+
+myPort.on('close', function_PortClose);
+
+
+
+
+
+
+
+function function_PortClose(){
+
+
+console.log('cerrando...')
+
+var message_local = new classes.message_object('c4_ardu','c3_web','20','Not connected');
+var message_json = JSON.stringify(message_local);
+
+conn.send(message_json, function(resp, data) {});
+
+var message_local = new classes.message_object('c4_ardu','c1_main','20','0');
+var message_json = JSON.stringify(message_local);
+
+conn.send(message_json, function(resp, data) {});
+
+
+var message_local = new classes.message_object('c4_ardu','c1_main','11','');
+var message_json = JSON.stringify(message_local);
+
+conn.send(message_json, function(resp, data) {});
+
+}
+
+
+
+
+
+
+
+
 
 
 

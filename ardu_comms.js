@@ -4,13 +4,44 @@ var serverUrl = 'http://localhost:8080';
 var conn = io.connect(serverUrl);
 console.log('c4_ardu running');
 
-
-var SerialPort = require('serialport');// include the library
-
 //envio id
 conn.emit('id', 'c4_ardu', function(resp, data) {
     //console.log(message_object);
 });
+
+var port_arg = process.argv[2];
+
+
+var SerialPort = require('serialport');// include the library
+
+
+var myPort = new SerialPort(port_arg, {
+   baudRate: 9600,
+   // look for return and newline at the end of each data packet:
+   //parser: SerialPort.parsers.readline("\n")
+ });
+ 
+
+
+myPort.on('open', onPortOpen);
+
+myPort.on('close', function_PortClose);
+myPort.on('data', onData);
+
+function onClose(){
+    console.log("Port is closed, yo");
+}
+
+function onPortOpen(){
+    console.log("YESSIR THE PORT IS OPEN COS CAPS");
+}
+
+
+function onData(d)
+{
+    console.log("data dis, data dat "+d)
+}
+
 
 
   
@@ -52,7 +83,7 @@ var port_name = msg_object.value_text;
 
 
 
-var myPort = new SerialPort(port_name, {
+myPort = new SerialPort(port_name, {
    baudRate: 9600,
    // look for return and newline at the end of each data packet:
    //parser: SerialPort.parsers.readline("\n")
@@ -80,17 +111,12 @@ conn.send(message_json, function(resp, data) {});
 //setInterval(test1,200);
 
 
-myPort.on('close', function_PortClose);
+
 
 }
      
      
 });
-
-
-
-
-
 
 
 
@@ -117,15 +143,4 @@ var message_json = JSON.stringify(message_local);
 conn.send(message_json, function(resp, data) {});
 
 }
-
-
-
-
-
-
-
-
-
-
-
 

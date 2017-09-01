@@ -6,7 +6,7 @@ var conn = io_client.connect(serverUrl);
 console.log('c1_main running');
 
 //MODO TEST
-var testmode = 1;
+var testmode = 0;
 
 var usb_list_on = 0;
 var ardu_on = 0;
@@ -123,7 +123,7 @@ puerto = new_portlist[0]
 
 
 //console.log('9 si solo hay 1 abro arducomms')
-abrir_ardu_comms();
+abrir_ardu_comms(puerto);
 	
 }	
 
@@ -151,10 +151,11 @@ conn.send(message_json, function(resp, data) {});
 
 if(msg_object.type_code == '3'){
 
-//abro ardu_comms
-abrir_ardu_comms();
-
 puerto = msg_object.value_text;
+//abro ardu_comms
+abrir_ardu_comms(puerto);
+
+
 
 
 
@@ -211,7 +212,7 @@ if (usb_list_on == 1 && ardu_on == 0){
 //si los dos están cerrados abro usb list y confirmo a web que he abierto
 }else if (usb_list_on == 0 && ardu_on == 0) {
 abrir_usb();
-
+console.log('abrir_usb')
 var message_local = new classes.message_object('c1_main','c3_web','6','ok');
 var message_json = JSON.stringify(message_local);
 conn.send(message_json, function(resp, data) {});
@@ -383,9 +384,9 @@ function stopcomms () {
 
 
 
-function abrir_ardu_comms(){
+function abrir_ardu_comms(p){
 
-child_ardu = exec_ardu('gnome-terminal --title="Arduino Comms" --geometry 73x20+900+500 -x nodejs ardu_comms.js',
+child_ardu = exec_ardu('gnome-terminal --title="Arduino Comms" --geometry 73x20+900+500 -x nodejs ardu_comms.js '+p,
 function (error, stdout, stderr) {
 
     if (error !== null) {

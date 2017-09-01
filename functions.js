@@ -173,12 +173,12 @@ switch(type_code) {
 }
   
   
-function update_arduino(text){
+function update_arduino(text,port,board){
 	
 create_ino_file(text)
 
 var spawn = require('child_process').spawn,
-    ino    = spawn('ino', ['build'],{cwd: 'projects/source/'});
+    ino    = spawn('arduino', ['--update'],{cwd: 'projects/source/'});
 
 ino.on('exit', function (code) {
   upload_ino()

@@ -417,7 +417,7 @@ console.log('client connected');
 
 		functions.update_arduino(data);
 		
-		console.log('ppe')
+
      		
     }); 
     
