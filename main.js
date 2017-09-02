@@ -260,11 +260,25 @@ var message_json = JSON.stringify(message_local);
 
 conn.send(message_json, function(resp, data) {});
 
-ardu_on = 1;
+ardu_on = 0;
 
 }
 
+if(msg_object.type_code == '22'){
 
+
+//mando msg para cerrar ardu.
+
+console.log('c4_ardu cerrando...');
+
+var message_local = new classes.message_object('c1_main','c4_ardu','0','');
+var message_json = JSON.stringify(message_local);
+
+conn.send(message_json, function(resp, data) {});
+
+ardu_on = 0;
+
+}
 
 if(msg_object.type_code == '20'){
 

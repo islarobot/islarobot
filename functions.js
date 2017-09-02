@@ -78,6 +78,8 @@ function parse_json_projects()
 indexjson = request_project_file('index.json');
 index_object = JSON.parse(indexjson);
 
+//console.log(indexjson)
+
 return index_object
 
 }
@@ -175,15 +177,20 @@ switch(type_code) {
   
 function update_arduino(text,port,board){
 	
+
+	
 create_ino_file(text)
 
-var spawn = require('child_process').spawn,
-    ino    = spawn('arduino', ['--update'],{cwd: 'projects/source/'});
+var spawn = require('child_process').spawn, 
 
-ino.on('exit', function (code) {
-  upload_ino()
-  console.log('update')
-});
+ino    = spawn('arduino', ['--upload --port '+port+' '+config.src_ino_file],{cwd: 'projects/source/'});
+
+ino.on('exit', function (code) { 
+
+ console.log('uploaded')
+ 
+ 
+ });
 
 
 
@@ -195,7 +202,16 @@ function create_ino_file(text){
 	
 var fs = require('fs');
 var config = require('./config');
-fs.writeFile(config.src_ino_file, text)
+var path = require('path');
+var file = path.join(__dirname,config.src_ino_file);
+
+
+
+
+fs.writeFile(file, text, function (err) {
+  if (err) return console.log(err);
+  
+});
 
 
 }  

@@ -33,7 +33,7 @@ function onClose(){
 }
 
 function onPortOpen(){
-    console.log("YESSIR THE PORT IS OPEN COS CAPS");
+    console.log("Port connected on "+port_arg);
 }
 
 

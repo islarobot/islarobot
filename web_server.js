@@ -248,7 +248,7 @@ console.log('client connected');
 			var message_local = new classes.message_object('c3_web','c1_main','21','');
  			var message_json = JSON.stringify(message_local);
 			conn.send(message_json);
-			console.log(message_json)
+			//console.log(message_json)
 		
      		
     }); 
@@ -415,6 +415,13 @@ console.log('client connected');
         //update arduino
         
      socket_web.on("update_arduino",function(data){
+     	
+     	//disconnect arduino
+     	
+     	var message_local = new classes.message_object('c3_web','c1_main','22','');
+		var message_json = JSON.stringify(message_local);
+
+		conn.send(message_json, function(resp, data) {});
 
 		functions.update_arduino(data);
 		
