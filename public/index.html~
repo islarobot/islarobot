@@ -81,7 +81,7 @@
 		
 		<div id="basicsensors" class="tabcontent">
   		<h3>Basic Sensors</h3>
-  		<iframe src="basicsensors.html" style="height: 100%; border: none" width="100%"></iframe>
+  		<iframe id="Iframebasicsensors" style="height: 100%; border: none" width="100%"></iframe>
 		</div>
 
 		<div id="basicactuators" class="tabcontent">
@@ -90,6 +90,10 @@
 		</div>
 
 		
+				<div id="projectsonar" class="tabcontent">
+  		<h3>Paris</h3>
+  		<iframe src="projectsonar.html" style="height: 100%; border: none" width="100%"></iframe>
+		</div>
 		
 			
 			</td>			
@@ -238,7 +242,7 @@ div.tab button.active {
             
             //console.log(project_info.interaction_pages)
 
-            add_tabs(project_info.interaction_pages)
+            add_tabs(project_info.interaction_pages,project_info.tutorial_type)
 				
 				});
 				

@@ -317,7 +317,12 @@ console.log('client connected');
 		
 		json_file = functions.return_project_json_file(active_project,projects_object)		
 
+		//console.log(JSON.stringify(projects_object))
+
 		answer = functions.request_project_file(json_file)
+		
+		
+		//console.log(answer)		
 		
 		answer_object = JSON.parse(answer)
 		

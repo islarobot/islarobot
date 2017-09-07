@@ -21,8 +21,19 @@ socket.emit('request_active_project_info','');
 
 }
 
-function add_tabs(data)
+function add_tabs(data,data1)
 {
+
+if (data1 == 'pdf') {
+addbutton('addDocu',"Documentation");
+
+}else if (data1 == 'html') {
+addbutton('docu',"Documentation");
+}else {
+
+addbutton('docu',"Documentation");
+addbutton('addDocu',"Additional Documentation");
+}
 
 for (i=0; i < data.length ; i++) 
 {
@@ -40,11 +51,11 @@ function reset_buttons()
 
 var node = document.getElementById('buttons');
 node.innerHTML = "";
-addbutton('docu',"Documentation");
+//addbutton('docu',"Documentation");
 addbutton('code',"Code");
-addbutton('addDocu',"Additional Documentation");
+//addbutton('addDocu',"Additional Documentation");
 
-openCity('docu_button', 'docu')
+//openCity('docu_button', 'docu')
 
 }
 
