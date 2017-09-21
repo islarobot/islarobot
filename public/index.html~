@@ -85,13 +85,13 @@
 		</div>
 
 		<div id="basicactuators" class="tabcontent">
-  		<h3>Paris</h3>
-  		<iframe src="basicactuators.html" style="height: 100%; border: none" width="100%"></iframe>
+  		<h3>Basic Actuators</h3>
+  		<iframe src="Iframebasicactuators.html" style="height: 100%; border: none" width="100%"></iframe>
 		</div>
 
 		
 				<div id="projectsonar" class="tabcontent">
-  		<h3>Paris</h3>
+  		<h3>Ultrasound Sonar <a href="projectsonar.html">new tab</a></h3>
   		<iframe src="projectsonar.html" style="height: 100%; border: none" width="100%"></iframe>
 		</div>
 		

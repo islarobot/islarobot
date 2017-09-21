@@ -83,7 +83,9 @@ value: request: proceso
 22. Cierro ardu para actualizar
 
 
-100: envio información
+100: envio información desde el arduino
+
+200 envio info al arduino.
 
 
 detectar cuando se inserta un usb.

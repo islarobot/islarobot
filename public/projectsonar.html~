@@ -157,7 +157,7 @@
 				//envío ángulos al arduino!!!
 				var min = 0
 				var max = 180
-				var speed = 1.75
+				var speed = 1
 				var freq = 0		
 				var juan = 0	
 				var a = 0

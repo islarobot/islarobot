@@ -465,8 +465,7 @@ angle_value:juan,
 
 }
 
-
-s.emit('send_info',JSON.stringify(msg_angle));
+s.send(JSON.stringify(msg_angle));
 //console.log(JSON.stringify(msg_angle))
    
 }
