@@ -66,7 +66,7 @@ var msg_object = JSON.parse(msg);
 
 //envio a web todo lo que recibo
 
-
+console.log(msg)
 
 io.emit(functions.decode_to_web_client(msg_object.type_code),JSON.stringify(msg_object.value_text));
 

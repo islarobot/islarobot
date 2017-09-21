@@ -6,7 +6,7 @@ var conn = io_client.connect(serverUrl);
 console.log('c1_main running');
 
 //MODO TEST
-var testmode = 0;
+var testmode = 1;
 
 var usb_list_on = 0;
 var ardu_on = 0;
@@ -489,7 +489,7 @@ if (testmode == 1) {
 setInterval(function(){ 
 	 
 	 //test_radar();
-	 test_two_sensors();
+	 test_radar();
 	 
 	 }, 100); 
 
