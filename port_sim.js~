@@ -1,0 +1,11 @@
+
+
+var SerialPort = require('serialport');
+var port = new SerialPort('/dev/tnt1', { autoOpen: false });
+ 
+port.open(function (err) {
+  if (err) {
+    return console.log('Error opening port: ', err.message);
+  }
+  
+ };

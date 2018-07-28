@@ -6,7 +6,7 @@ var conn = io_client.connect(serverUrl);
 console.log('c1_main running');
 
 //MODO TEST
-var testmode = 1;
+var testmode = 0;
 
 var usb_list_on = 0;
 var ardu_on = 0;
@@ -32,7 +32,7 @@ var puerto;
 
 //abro terminal y ejecuto comms server
 
-child_comms = exec_comms('gnome-terminal --title=\"Comms Server\" --geometry 73x20+900+0 -x nodejs comms_server.js',
+child_comms = exec_comms('gnome-terminal --window-with-profile=islarobot --title=\"Comms Server\" --geometry 73x20+900+0 -x nodejs comms_server.js',
 function (error, stdout, stderr) {
 
     if (error !== null) {
@@ -50,7 +50,7 @@ conn.emit('id', 'c1_main', function(resp, data) {
 
 //abro terminal y ejecuto web server
 
-child_web = exec_web('gnome-terminal --title=\"Web Server\" --geometry 73x20+0+500 -x nodejs web_server.js',
+child_web = exec_web('gnome-terminal --window-with-profile=islarobot --title=\"Web Server\" --geometry 73x20+0+500 -x nodejs web_server.js',
 function (error, stdout, stderr) {
 
     if (error !== null) {
@@ -62,7 +62,7 @@ function (error, stdout, stderr) {
 
 //abro terminal y ejecuto usb_list
 
-child_usb = exec_usb('gnome-terminal --title="USB List" --geometry 73x20+900+500 -x nodejs usb_list.js',
+child_usb = exec_usb('gnome-terminal --window-with-profile=islarobot --title="USB List" --geometry 73x20+900+500 -x nodejs usb_list.js',
 function (error, stdout, stderr) {
 
     if (error !== null) {
@@ -93,11 +93,12 @@ var portlist = msg_object.value_text;
 
 //console.log('7 recibo puertos de usb')
 //console.log('8 compruebo si hay cero, uno o varios')
-
+//console.log('--------------------------------------------------')
+//console.log(portlist);
 
 for(index = 0;index < portlist.length;index++){
 
-if (typeof portlist[index].manufacturer != 'undefined' && portlist[index].manufacturer.substring(0,7) == 'Arduino') {
+if (typeof portlist[index].manufacturer != 'undefined' && portlist[index].manufacturer.substring(0,7) == 'tnt1') {
 
 new_portlist.push(portlist[index].comName);
 

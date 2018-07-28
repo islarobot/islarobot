@@ -3,12 +3,12 @@ var classes = require('./classes.js')
 var io = require('socket.io-client');
 var serverUrl = 'http://localhost:8080';
 var conn = io.connect(serverUrl);
-console.log('c5_usb running');
+console.log('c5_usb list running');
 
 var ports_array = [];
 
 
-//envio id
+//envio id a comms
 conn.emit('id', 'c5_usb', function(resp, data) {
     //console.log(message_object);
 });
